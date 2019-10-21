@@ -37,13 +37,14 @@ app.get('/weather',(req,res)=>{
             return res.send({error})
         }
 
-        forecast(latitude,longitude,(error,{temperature,precipProbability} = {})=>{
+        forecast(latitude,longitude,(error,{temperature,precipProbability,summary,temperatureHigh,temperatureLow} = {})=>{
             if(error){
                 return res.send({"error": "ops forecast"})
             }
 
             res.send({
-                forecast: `In ${location} it is currently ${temperature} degrees out and the chance of precipitation is ${precipProbability}%.`,
+                currentForecast: `In ${location} it is currently ${temperature} degrees out and the chance of precipitation is ${precipProbability}%.`,
+                dailySummary: summary,
                 address: req.query.address,
                 location
             });

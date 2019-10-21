@@ -12,7 +12,8 @@ const forecast = function(lang,long,callback){
            callback("Ops! It does not work",undefined);
         } else {
             const {temperature,precipProbability} = response.body.currently;
-            callback(undefined,{temperature,precipProbability})
+            const {summary} = response.body.hourly;
+            callback(undefined,{temperature,precipProbability,summary})
         }
     })
 }
